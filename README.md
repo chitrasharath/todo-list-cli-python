@@ -1,53 +1,47 @@
-<!--hide-->
-# Todo's List CLI (Command Line Interface)
-<!--endhide-->
+# Todo List CLI
 
-<p align="center">
-  <img height="200" src="https://github.com/breatheco-de/exercise-todo-list-cli-python/blob/master/preview.gif?raw=true" />
-</p>
+A simple command-line todo list application written in Python. Tasks are kept
+in memory while the application is running and can be saved to or loaded from
+`todos.csv`.
 
-Create a TODO list application that allows users to add and delete tasks from the command line.
+## Requirements
 
-<onlyfor saas="false" withBanner="false">
-  
-## 🌱  How to start this project
+- Python 3
 
-a) Open this link in your browser with [Codespaces](https://4geeks.com/lesson/what-is-github-codespaces) (recommended) or [Gitpod](https://4geeks.com/lesson/how-to-use-gitpod): https://github.com/codespaces/new/?repo=4GeeksAcademy/python-hello
+## Run the application
 
-b) You can clone this repository on your local computer:
+From the repository directory, run:
 
 ```bash
-$ git clone https://github.com/4GeeksAcademy/python-hello
+python3 app.py
 ```
 
-### Steps
+Use the menu to:
 
-- If working locally, you should have python [installed](https://4geeks.com/how-to/how-to-install-python).
+1. Add a task
+2. Delete a task by its number
+3. Print the current task list
+4. Save tasks to `todos.csv`
+5. Load tasks from `todos.csv`
+6. Exit
 
-- You should open the terminal on the path of this template and run `$ python3 app.py`, if everything works correctly, it should show `Hello World` on the terminal.
+The CSV file is created in the current working directory when tasks are saved.
+Loading replaces the current in-memory list with the tasks in `todos.csv`.
 
-- You can test your code by typing: `$ python3 test.py`.
+## Run the tests
 
-💡 Important: Remember to create a new repository, update the remote (`git remote set-url origin <your new url>`), and upload the code to your new repository using `add`, `commit` and `push`.
+```bash
+python3 -m unittest test.py
+```
 
-</onlyfor>
-
-## 📝 Instructions
-
-These are the functions you will have to implement:
+The task operations are also available as functions when importing `app`:
 
 ```python
-def add_one_task(title):
-def print_list():
-def delete_task(number_to_delete):
-def save_todos():
-def load_todos():
-```
+from app import add_one_task, delete_task, get_todos, load_todos, save_todos
 
-- You app needs to work from the the command line [like this image](https://raw.githubusercontent.com/breatheco-de/exercise-todo-list-cli-python/refs/heads/master/preview.gif?raw=true).
-- The user should be able to add new tasks
-- The user can add as many tasks as he/she wants.
-- The user can delete tasks by specifying the task position in the list.
-- The user can save the todos to a `todos.csv` file
-- The user can retrieve the todos from a `todos.csv` file
-- There is no way to update a task, the user will have to delete and create again.
+add_one_task("Buy groceries")
+delete_task(1)
+save_todos()
+load_todos()
+print(get_todos())
+```
